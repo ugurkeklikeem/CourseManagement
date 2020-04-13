@@ -1,89 +1,59 @@
 package com.itbootcamp.coursemanagement.model.entity;
 
 import com.itbootcamp.coursemanagement.model.constant.Level;
-
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Course {
 
-    @Id
-    @GeneratedValue
-    private Integer id;
+  @Id
+  @GeneratedValue
+  private Integer id;
 
-    @Column
-    private String title;
+  @Column
+  private String title;
 
-    @Column
-    private String description;
+  @Column
+  private String description;
 
-    @Column
-    private Level level;
+  @Column
+  private Level level;
 
-    @ManyToOne
-    @JoinColumn(name = "tutor_id")
-    private Tutor tutor;
+  public Course(String title, String description, Level level) {
+    this.title = title;
+    this.description = description;
+    this.level = level;
 
+  }
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    private List<Student> students;
+  public Integer getId() {
+    return id;
+  }
 
-    public Course() {
-    }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public Course(String title, String description, Level level) {
-        this.title = title;
-        this.description = description;
-        this.level = level;
+  public String getTitle() {
+    return title;
+  }
 
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public Integer getId() {
-        return id;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Level getLevel() {
-        return level;
-    }
-
-    public void setLevel(Level level) {
-        this.level = level;
-    }
-
-    public Tutor getTutor() {
-        return tutor;
-    }
-
-    public void setTutor(Tutor tutor) {
-        this.tutor = tutor;
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
+  public Level getLevel() {
+    return level;
+  }
 }

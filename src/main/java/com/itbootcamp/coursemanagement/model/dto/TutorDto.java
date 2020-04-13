@@ -1,35 +1,12 @@
-package com.itbootcamp.coursemanagement.model.entity;
+package com.itbootcamp.coursemanagement.model.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class TutorDto {
 
-@Entity
-@Table
-public class Tutor {
-
-  @Id
-  @GeneratedValue
-  private Integer id;
-
-  @Column
   private String firstName;
 
-  @Column
   private String lastName;
 
-  @Column
   private String email;
-
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
 
   public String getFirstName() {
     return firstName;
