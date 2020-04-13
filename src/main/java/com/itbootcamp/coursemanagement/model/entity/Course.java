@@ -22,6 +22,9 @@ public class Course {
   @Column
   private Level level;
 
+  public Course() {
+  }
+
   public Course(String title, String description, Level level) {
     this.title = title;
     this.description = description;
