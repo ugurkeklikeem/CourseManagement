@@ -3,8 +3,10 @@ package com.itbootcamp.coursemanagement.model.entity;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Student {
@@ -15,20 +17,22 @@ public class Student {
   private Date dateOfBirth ;
   private String email;
   private String password;
+  @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
   private List<Course> courses;
-  private Course course;
+  //private Course course;
+
+  public Student() {
+
+  }
 
   public Student(UUID id, String name, String surname, Date dateOfBirth,
-      String email, String password,
-      List<Course> courses, Course course) {
+      String email, String password) {
     this.id = id;
     this.name = name;
     this.surname = surname;
     this.dateOfBirth = dateOfBirth;
     this.email = email;
     this.password = password;
-    this.courses = courses;
-    this.course = course;
   }
 
   public UUID getId() {
@@ -83,11 +87,11 @@ public class Student {
     this.courses = courses;
   }
 
-  public Course getCourse() {
-    return course;
-  }
-
-  public void setCourse(Course course) {
-    this.course = course;
-  }
+//  public Course getCourse() {
+//    return course;
+//  }
+//
+//  public void setCourse(Course course) {
+//    this.course = course;
+//  }
 }
