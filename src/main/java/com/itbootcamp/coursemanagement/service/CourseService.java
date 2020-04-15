@@ -1,5 +1,6 @@
 package com.itbootcamp.coursemanagement.service;
 
+import com.itbootcamp.coursemanagement.model.constant.Level;
 import com.itbootcamp.coursemanagement.model.dto.CourseDTO;
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface CourseService {
   void deleteByCourseId(Integer courseId);
 
   void updateCourse(Integer courseId,CourseDTO courseDTO);
+
+  List<CourseDTO> getCourseByLevel(Level level);
 }

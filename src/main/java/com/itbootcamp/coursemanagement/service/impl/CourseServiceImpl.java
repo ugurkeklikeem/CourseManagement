@@ -1,5 +1,6 @@
 package com.itbootcamp.coursemanagement.service.impl;
 
+import com.itbootcamp.coursemanagement.model.constant.Level;
 import com.itbootcamp.coursemanagement.model.dto.CourseDTO;
 import com.itbootcamp.coursemanagement.model.entity.Course;
 import com.itbootcamp.coursemanagement.repository.CourseRepository;
@@ -62,5 +63,19 @@ public class CourseServiceImpl implements CourseService {
       course.setDescription(courseDTO.getDescription());
       courseRepository.save(course);
     });
+  }
+
+  @Override
+  public List<CourseDTO> getCourseByLevel(Level level) {
+    List<Course> courseList = courseRepository.findByLevel(level);
+    List<CourseDTO> courseDTOS = new ArrayList<>();
+    courseList.forEach(course -> {
+      CourseDTO courseDTO = new CourseDTO();
+      courseDTO.setDescription(course.getDescription());
+      courseDTO.setLevel(course.getLevel());
+      courseDTO.setTitle(course.getTitle());
+      courseDTOS.add(courseDTO);
+    });
+    return courseDTOS;
   }
 }
