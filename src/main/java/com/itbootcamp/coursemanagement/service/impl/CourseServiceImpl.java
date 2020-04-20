@@ -63,4 +63,8 @@ public class CourseServiceImpl implements CourseService {
       courseRepository.save(course);
     });
   }
+
+  public List<Course> getCoursesByTitleOrderByTitle(String title){
+    return courseRepository.findByTitleOrderByTitleDesc(title);
+  }
 }
