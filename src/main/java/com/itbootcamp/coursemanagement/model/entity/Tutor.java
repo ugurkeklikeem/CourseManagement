@@ -1,9 +1,16 @@
 package com.itbootcamp.coursemanagement.model.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +29,40 @@ public class Tutor {
 
   @Column
   private String email;
+
+  @OneToOne(mappedBy = "tutor", cascade = CascadeType.ALL)
+  private TutorContact contact;
+
+  @OneToMany(mappedBy = "tutor", fetch = FetchType.LAZY)
+  private List<Lesson> lessons = new ArrayList<>();
+
+  public void setTutorContact(TutorContact contact){
+    contact.setTutor(this);
+    this.contact = contact;
+  }
+
+  public void removeTutorContact(){
+    contact.setTutor(null);
+    this.contact = null;
+  }
+
+  public void addLesson(Lesson lesson){
+    lesson.setTutor(this);
+    lessons.add(lesson);
+  }
+
+  public void removeLesson(Lesson lesson){
+    lesson.setTutor(null);
+    lessons.remove(lesson);
+  }
+
+  public TutorContact getContact() {
+    return contact;
+  }
+
+  public void setContact(TutorContact contact) {
+    this.contact = contact;
+  }
 
   public Integer getId() {
     return id;

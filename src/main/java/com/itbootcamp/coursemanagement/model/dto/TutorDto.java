@@ -1,5 +1,7 @@
 package com.itbootcamp.coursemanagement.model.dto;
 
+import com.itbootcamp.coursemanagement.model.entity.TutorContact;
+
 public class TutorDto {
 
   private String firstName;
@@ -7,6 +9,16 @@ public class TutorDto {
   private String lastName;
 
   private String email;
+
+  private TutorContact contact;
+
+  public TutorContact getContact() {
+    return contact;
+  }
+
+  public void setContact(TutorContact contact) {
+    this.contact = contact;
+  }
 
   public String getFirstName() {
     return firstName;

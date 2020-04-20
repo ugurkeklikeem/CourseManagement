@@ -24,6 +24,7 @@ public class TutorServiceImpl implements TutorService {
     tutor.setEmail(tutorDto.getEmail());
     tutor.setFirstName(tutorDto.getFirstName());
     tutor.setLastName(tutorDto.getLastName());
+    tutor.setTutorContact(tutorDto.getContact());
     tutorRepository.save(tutor);
   }
 
