@@ -22,7 +22,7 @@ public class StudentServiceImpl implements StudentService {
   public void addStudent(StudentDto studentDto) {
     Student student = new Student();
     student.setName(studentDto.getName());
-    student.setStudentNumber(student.getStudentNumber());
+    student.setStudentNumber(studentDto.getStudentNumber());
     studentRepository.save(student);
   }
 

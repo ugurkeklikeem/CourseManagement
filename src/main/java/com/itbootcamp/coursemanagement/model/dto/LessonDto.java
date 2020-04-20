@@ -1,5 +1,7 @@
 package com.itbootcamp.coursemanagement.model.dto;
 
+import java.util.List;
+
 public class LessonDto {
 
   private String roomNumber;
@@ -9,6 +11,16 @@ public class LessonDto {
   private Integer courseId;
 
   private Integer tutorId;
+
+  private List<Integer> studentIds;
+
+  public List<Integer> getStudentIds() {
+    return studentIds;
+  }
+
+  public void setStudentIds(List<Integer> studentIds) {
+    this.studentIds = studentIds;
+  }
 
   public Integer getTutorId() {
     return tutorId;

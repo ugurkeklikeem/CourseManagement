@@ -1,8 +1,12 @@
 package com.itbootcamp.coursemanagement.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Student {
@@ -14,6 +18,18 @@ public class Student {
   private String name;
 
   private String studentNumber;
+
+  @ManyToMany(mappedBy = "students")
+  @JsonIgnore
+  private List<Lesson> lessons = new ArrayList<>();
+
+  public List<Lesson> getLessons() {
+    return lessons;
+  }
+
+  public void setLessons(List<Lesson> lessons) {
+    this.lessons = lessons;
+  }
 
   public Integer getId() {
     return id;

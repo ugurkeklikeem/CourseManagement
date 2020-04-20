@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,7 +28,7 @@ public class Tutor {
   @Column
   private String email;
 
-  @ManyToMany(mappedBy = "tutors")
+  @OneToMany(mappedBy = "tutor")
   @JsonIgnore
   private List<Lesson> lessons = new ArrayList<>();
 

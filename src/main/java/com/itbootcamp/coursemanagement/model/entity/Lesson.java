@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -27,25 +28,36 @@ public class Lesson {
   @JoinColumn(name = "course_id")
   private Course course;
 
+  @ManyToOne
+  private Tutor tutor;
+
+  public Tutor getTutor() {
+    return tutor;
+  }
+
+  public void setTutor(Tutor tutor) {
+    this.tutor = tutor;
+  }
+
   @ManyToMany
-  private List<Tutor> tutors = new ArrayList<>();
+  private List<Student> students = new ArrayList<>();
 
-  public void addTutor(Tutor tutor){
-    tutors.add(tutor);
-    tutor.getLessons().add(this);
+  public List<Student> getStudents() {
+    return students;
   }
 
-  public void removeTutor(Tutor tutor){
-    tutors.remove(tutor);
-    tutor.getLessons().remove(this);
+  public void setStudents(List<Student> students) {
+    this.students = students;
   }
 
-  public List<Tutor> getTutors() {
-    return tutors;
+  public void addStudent(Student student){
+    students.add(student);
+    student.getLessons().add(this);
   }
 
-  public void setTutors(List<Tutor> tutors) {
-    this.tutors = tutors;
+  public void removeStudent(Student student){
+    students.remove(student);
+    student.getLessons().remove(this);
   }
 
   public String getRoomNumber() {

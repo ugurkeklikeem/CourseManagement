@@ -6,6 +6,7 @@ import com.itbootcamp.coursemanagement.model.entity.Lesson;
 import com.itbootcamp.coursemanagement.model.entity.Tutor;
 import com.itbootcamp.coursemanagement.repository.CourseRepository;
 import com.itbootcamp.coursemanagement.repository.LessonRepository;
+import com.itbootcamp.coursemanagement.repository.StudentRepository;
 import com.itbootcamp.coursemanagement.repository.TutorRepository;
 import com.itbootcamp.coursemanagement.service.LessonService;
 import java.util.List;
@@ -24,6 +25,9 @@ public class LessonServiceImpl implements LessonService {
   @Autowired
   private TutorRepository tutorRepository;
 
+  @Autowired
+  private StudentRepository studentRepository;
+
   @Override
   public void addLesson(LessonDto lessonDto) {
     Course course = courseRepository.findById(lessonDto.getCourseId()).orElseThrow( RuntimeException::new);
@@ -33,7 +37,9 @@ public class LessonServiceImpl implements LessonService {
     lesson.setRoomNumber(lessonDto.getRoomNumber());
     lesson.setDuration(lessonDto.getDuration());
     lesson.setCourse(course);
-    lesson.addTutor(tutor);
+    lesson.setTutor(tutor);
+
+    studentRepository.findAllById(lessonDto.getStudentIds()).forEach(lesson::addStudent);
     lessonRepository.save(lesson);
   }
 
