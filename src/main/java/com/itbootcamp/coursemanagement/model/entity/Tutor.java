@@ -1,9 +1,13 @@
 package com.itbootcamp.coursemanagement.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +26,18 @@ public class Tutor {
 
   @Column
   private String email;
+
+  @ManyToMany(mappedBy = "tutors")
+  @JsonIgnore
+  private List<Lesson> lessons = new ArrayList<>();
+
+  public List<Lesson> getLessons() {
+    return lessons;
+  }
+
+  public void setLessons(List<Lesson> lessons) {
+    this.lessons = lessons;
+  }
 
   public Integer getId() {
     return id;
