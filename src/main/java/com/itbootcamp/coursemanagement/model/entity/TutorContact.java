@@ -1,5 +1,6 @@
 package com.itbootcamp.coursemanagement.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,6 +19,7 @@ public class TutorContact {
 
   @OneToOne
   @JoinColumn(name = "tutor_id")
+  @JsonIgnore
   private Tutor tutor;
 
   public Tutor getTutor() {

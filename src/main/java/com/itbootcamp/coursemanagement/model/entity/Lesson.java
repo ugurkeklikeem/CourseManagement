@@ -1,10 +1,14 @@
 package com.itbootcamp.coursemanagement.model.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -17,6 +21,17 @@ public class Lesson {
   private String location;
 
   private String dateAndTime;
+
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+  private List<Student> students = new ArrayList<>();
+
+  public List<Student> getStudents() {
+    return students;
+  }
+
+  public void setStudents(List<Student> students) {
+    this.students = students;
+  }
 
   @ManyToOne
   @JoinColumn(name = "tutor_id")
