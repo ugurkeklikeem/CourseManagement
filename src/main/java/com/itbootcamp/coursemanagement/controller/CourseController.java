@@ -1,7 +1,7 @@
 package com.itbootcamp.coursemanagement.controller;
 
-import com.itbootcamp.coursemanagement.model.constant.Level;
 import com.itbootcamp.coursemanagement.model.dto.CourseDTO;
+import com.itbootcamp.coursemanagement.model.entity.Course;
 import com.itbootcamp.coursemanagement.service.CourseService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +35,10 @@ public class CourseController {
     courseService.updateCourse(courseId, courseDTO);
   }
 
-//  @GetMapping
-//  public List<CourseDTO> getAllCourse() {
-//    return courseService.getAllCourse();
-//  }
+  @GetMapping
+  public List<CourseDTO> getAllCourse() {
+    return courseService.getAllCourse();
+  }
 
   @GetMapping("/title/{title}")
   public List<CourseDTO> getCourseByTitle(@PathVariable String title) {
@@ -50,11 +50,9 @@ public class CourseController {
     courseService.deleteByCourseId(courseId);
   }
 
-  @GetMapping
-  public List<CourseDTO> getCoursesByLevel(@RequestParam(required = false) Level level){
-    if (level == null)
-      return courseService.getAllCourse();
-    else
-      return courseService.getCourseByLevel(level);
+  @GetMapping("orderByTitle")
+  public List<Course> getAllCourseByTitleOrderByTitle(@RequestParam String title) {
+    return courseService.getCoursesByTitleOrderByTitle(title);
   }
+
 }
