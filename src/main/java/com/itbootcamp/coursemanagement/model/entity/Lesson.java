@@ -33,6 +33,11 @@ public class Lesson {
     this.students = students;
   }
 
+  public void addStudent(Student student){
+    students.add(student);
+    student.getLessons().add(this);
+  }
+
   @ManyToOne
   @JoinColumn(name = "tutor_id")
   private Tutor tutor;
@@ -68,4 +73,5 @@ public class Lesson {
   public void setDateAndTime(String dateAndTime) {
     this.dateAndTime = dateAndTime;
   }
+
 }

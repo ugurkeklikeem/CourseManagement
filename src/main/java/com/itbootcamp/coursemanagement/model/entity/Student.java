@@ -1,8 +1,8 @@
 package com.itbootcamp.coursemanagement.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -15,6 +15,21 @@ public class Student {
 
   private String studentNumber;
 
+  @ManyToMany( mappedBy = "students")
+  private List<Lesson> lessons = new ArrayList<>();
+
+  public List<Lesson> getLessons() {
+    return lessons;
+  }
+
+  public void setLessons(List<Lesson> lessons) {
+    this.lessons = lessons;
+  }
+
+  public void addLesson(Lesson lesson){
+    lesson.getStudents().add(this);
+    lessons.add(lesson);
+  }
   public Integer getId() {
     return id;
   }

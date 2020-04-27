@@ -2,6 +2,7 @@ package com.itbootcamp.coursemanagement.controller;
 
 import com.itbootcamp.coursemanagement.model.dto.CourseDTO;
 import com.itbootcamp.coursemanagement.model.dto.StudentDto;
+import com.itbootcamp.coursemanagement.model.dto.StudentLessonDto;
 import com.itbootcamp.coursemanagement.service.CourseService;
 import com.itbootcamp.coursemanagement.service.StudentService;
 import java.util.List;
@@ -30,6 +31,16 @@ public class StudentController {
 
   @PostMapping
   public void addStudent(@RequestBody StudentDto studentDto) {
+    studentService.addStudent(studentDto);
+  }
+
+  @PostMapping("/lessons")
+  public void addLessonToStudent(@RequestBody StudentLessonDto dto) {
+    studentService.addLesson(dto);
+  }
+
+  @PostMapping("/id")
+  public void addStudentById(@PathVariable int id, @RequestBody StudentDto studentDto) {
     studentService.addStudent(studentDto);
   }
 
