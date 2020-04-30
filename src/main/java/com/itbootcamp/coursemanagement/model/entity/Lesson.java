@@ -22,7 +22,7 @@ public class Lesson {
 
   private String dateAndTime;
 
-  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "lessons")
   private List<Student> students = new ArrayList<>();
 
   public List<Student> getStudents() {

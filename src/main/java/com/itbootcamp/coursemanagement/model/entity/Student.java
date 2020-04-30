@@ -15,7 +15,7 @@ public class Student {
 
   private String studentNumber;
 
-  @ManyToMany( mappedBy = "students")
+  @ManyToMany(cascade = CascadeType.PERSIST)
   private List<Lesson> lessons = new ArrayList<>();
 
   public List<Lesson> getLessons() {

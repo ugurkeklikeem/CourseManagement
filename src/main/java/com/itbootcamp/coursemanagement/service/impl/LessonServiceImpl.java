@@ -40,7 +40,7 @@ public class LessonServiceImpl implements LessonService {
 
   @Override
   public List<LessonDto> getAllLessons() {
-    return null;
+    throw new RuntimeException("This method not implemented yet.");
   }
 
   @Override
